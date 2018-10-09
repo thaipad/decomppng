@@ -81,23 +81,19 @@ public class CardDeal {
     }
 
 
-    private BufferedImage imageDeal;
-    private List<Card> deal = new ArrayList<>();
+    public static List<Card> getDeal(File file)  {
+        List<Card> deal = new ArrayList<>();
 
-    public CardDeal(File file)  {
         try {
-            imageDeal = ImageIO.read(file);
+            BufferedImage imageDeal = ImageIO.read(file);
             for (int i = 0; i < 5; ++i) {
                 if (hasCard(imageDeal, i)) {
                     deal.add(new Card(getSuit(imageDeal, i), getRank(imageDeal, i)));
                 }
             }
         } catch(IOException e) {
-            imageDeal = null;
+            // writing stacktrace to log file must be here
         }
-    }
-
-    public List<Card> getDeal() {
         return deal;
     }
 

@@ -50,8 +50,7 @@ public class CardDealTest {
     @Test
     public void getDeal() throws Exception {
         for (Map.Entry<String, Card[]> item: mapImages.entrySet()) {
-            CardDeal cardDeal = new CardDeal(new File(PNG_DIRECTORY + item.getKey()));
-            List<Card> deal = cardDeal.getDeal();
+            List<Card> deal = CardDeal.getDeal(new File(PNG_DIRECTORY + item.getKey()));
             deal.forEach(System.out::print);
             System.out.println();
             assertEquals(item.getValue().length, deal.size());
